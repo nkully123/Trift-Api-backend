@@ -6,6 +6,7 @@ import { PhonebookModule } from './phonebook/phonebook.module';
 	imports: [
 		MongooseModule.forRoot("mongodb+srv://nonkululeko:<nonkululeko>@phonebook.xdpow.mongodb.net/phoneDatabase?retryWrites=true&w=majority", { autoCreate: true, }),
 		// MongooseModule.forRoot("mongodb://localhost:27017/PHONEBOOK_DB", { autoCreate: true }),
+		//push
 		PhonebookModule,
 	],
 	controllers: [],
