@@ -10,8 +10,7 @@ async function bootstrap() {
 	let logger = new Logger();
 
 	app.enableCors({
-		origin: true,
-	    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+		origin: ['http://localhost:4200','https://nonkululeko-phonebook.netlify.app'],
 		credentials: true
 	});
 	app.setGlobalPrefix('api');
