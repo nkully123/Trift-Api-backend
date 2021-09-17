@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { Model } from 'mongoose';
 import { Phonebook } from './phonebook-model-shema';
 
@@ -68,6 +69,7 @@ export class PhonebookService {
 
 	async findOnePhonebookFromTheDatabase(id: string){
 		let phonebook: any;
+		let  phonetwo: any;
 
 		try {
 			phonebook = await this.__phonebookModel.findOne({ _id: id});
