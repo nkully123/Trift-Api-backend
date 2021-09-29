@@ -7,13 +7,13 @@ export class ProductController {
 
 	constructor(private __product: ProductService) {}
 
-	@Get('search')
-	async searchProduct(@Req() req: Request){
-		return await this.__product.searchProductByNameOrNumber(req);
-	}
+	//  @Get('search')
+	//  async searchProduct(@Req() req: Request){
+	// 	return await this.__product.searchProductByNameOrNumber(req);
+	// }
 
 	@Post()
-	async addNewProduct(@Body() product : { phone: number, email: string, name: string }){
+	async addNewProduct(@Body() product : { phoneNumber: number, email: string, name: string, size:string, color:string,address:string }){
 		return await this.__product.addNewProductToTheDatabase(product);
 	}
 
@@ -22,14 +22,9 @@ export class ProductController {
 		return await this.__product.getAllproductsFromTheDatabase();
 	}
 
-
-   
-
-
-
-	// @Get('/:phonebookId')
-	// async getOnePhonebook(@Param('phonebookId') phonebookId: string ){
-	// 	return await this.__product.getOnePhonebookFromTheDatabase(phonebookId);
+	// @Get('/:productId')
+	// async getOneProduct(@Param('productId') productId: string ){
+	// 	return await this.__product.getOneProductFromTheDatabase(productId);
 	// }
 
 	// @Patch('/:phonebookId')
@@ -37,10 +32,10 @@ export class ProductController {
 	// 	return await this.__product.updateOneProductFromTheDatabase(phonebookId, phonebook);
 	// }
 
-	@Delete('/:productId')
-	async deleteOneProduct(@Param('productId') productId: string )
-	{
-		return await this.__product.deleteOneProductFromTheDatabase(productId);
-	}
+	// @Delete('/:productId')
+	// async deleteOneProduct(@Param('productId') productId: string )
+	// {
+	// 	return await this.__product.deleteOneProductFromTheDatabase(productId);
+	// }
 
 }
