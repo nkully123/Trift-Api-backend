@@ -35,6 +35,27 @@ export class ProductService {
 
 
 
+	async searchProductByNameOrColor(requset: any){
+		return (await this.__productModel.find({
+			$or: [ 
+				{ name: new RegExp(requset.query.s.toString(), 'i' )}, 
+				{ color: new RegExp(requset.query.s.toString(), 'i' )}, 
+			] 
+		}).sort({ name: 1 }).exec()).map((prod: any) => ({ color: prod.color, name: prod.name }));
+	}
+
+	async deleteOneProductFromTheDatabase(productId: string){
+		await this.deleteOneProductFromTheDatabase(productId);
+		const remove_product = await this.__productModel.findOneAndDelete({ _id: productId }).exec();
+		return { message: `successfully deleted ${remove_product.name}'s number` };
+	}
+
+
+
+   
+
+
+
 
 	// async updateOneproductFromTheDatabase(productId: string, new_product: any){
 	// 	const current_product = await this.findOneproductFromTheDatabase(productId);
@@ -56,21 +77,10 @@ export class ProductService {
 	// 	}
 	// }
 
-	// async deleteOneProductFromTheDatabase(productId: string){
-	// 	await this.deleteOneProductFromTheDatabase(productId);
-	// 	const remove_product = await this.__productModel.findOneAndDelete({ _id: productId }).exec();
-	// 	return { message: `successfully deleted ${remove_product.name}'s number` };
-	// }
+		
 
-	// async searchProductByNameOrNumber(requset: any){
-	// 	return (await this.__productModel.find({
-	// 		$or: [ 
-	// 			{ name: new RegExp(requset.query.s.toString(), 'i' )}, 
-	// 			{ email: new RegExp(requset.query.s.toString(), 'i' )}, 
-	// 		] 
-	// 	}).sort({ name: 1 }).exec()).map((book: any) => ({ id: book.id, phone: book.phone, email: book.email, name: book.name }));
-	// }
 
+	
 	// async findOneproductFromTheDatabase(id: string){
 	// 	let product: any;
 	// 	let  phonetwo: any;

@@ -7,10 +7,10 @@ export class ProductController {
 
 	constructor(private __product: ProductService) {}
 
-	//  @Get('search')
-	//  async searchProduct(@Req() req: Request){
-	// 	return await this.__product.searchProductByNameOrNumber(req);
-	// }
+	 @Get('search')
+	 async searchProduct(@Req() req: Request){
+		return await this.__product.searchProductByNameOrColor(req);
+	}
 
 	@Post()
 	async addNewProduct(@Body() product : { phoneNumber: number, email: string, name: string, size:string, color:string,address:string }){
@@ -22,9 +22,20 @@ export class ProductController {
 		return await this.__product.getAllproductsFromTheDatabase();
 	}
 
+	@Delete(':productId')
+	async deleteOneProduct(@Param('productId') productId: string )
+	{
+		return await this.__product.deleteOneProductFromTheDatabase(productId);
+	}
+
+
+
+    
+
+
 	// @Get('/:productId')
 	// async getOneProduct(@Param('productId') productId: string ){
-	// 	return await this.__product.getOneProductFromTheDatabase(productId);
+	//  	return await this.__product.getOneProductFromTheDatabase(productId);
 	// }
 
 	// @Patch('/:phonebookId')
@@ -32,10 +43,5 @@ export class ProductController {
 	// 	return await this.__product.updateOneProductFromTheDatabase(phonebookId, phonebook);
 	// }
 
-	// @Delete('/:productId')
-	// async deleteOneProduct(@Param('productId') productId: string )
-	// {
-	// 	return await this.__product.deleteOneProductFromTheDatabase(productId);
-	// }
 
 }
